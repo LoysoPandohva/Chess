@@ -3,7 +3,7 @@
 
 class Knight: public Piece {
 public:
-	Knight(bool _color, int _x, int _y) : Piece(_color, _x, _y)
+	Knight(bool _color, bool _first_move, int _x, int _y) : Piece(_color, _first_move, _x, _y)
 	{
 		texture.loadFromFile("images//pieces.png");
 		sprite.setTexture(texture);
@@ -11,7 +11,6 @@ public:
 		else sprite.setTextureRect(sf::IntRect(90, 50, 30, 48));
 		sprite.setPosition(coord_trans(position).x, coord_trans(position).y);
 	}
-
 
 	void possible_move(Board &_board) {
 		sf::Vector2i current_pos = position;
@@ -70,7 +69,7 @@ public:
 			}
 		}
 		//-------------------LEFT-UP-------------------------
-		if (current_pos.x - 2 >= 0 && current_pos.y - 1 < 8) {
+		if (current_pos.x - 2 >= 0 && current_pos.y - 1 >= 0) {
 			if (_board.get_all_cells(current_pos.x - 2, current_pos.y - 1).get_employment() == false) {
 				_board.get_all_cells(current_pos.x - 2, current_pos.y - 1).on_backlight();
 			}

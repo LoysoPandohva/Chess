@@ -3,7 +3,7 @@
 
 class Queen: public Piece {
 public:
-	Queen(bool _color, int _x, int _y) : Piece(_color, _x, _y)
+	Queen(bool _color, bool _first_move, int _x, int _y) : Piece(_color, _first_move, _x, _y)
 	{
 		texture.loadFromFile("images//pieces.png");
 		sprite.setTexture(texture);

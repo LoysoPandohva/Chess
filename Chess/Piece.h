@@ -3,8 +3,12 @@
 #include "Board.h"
 
 class Piece {
-public:
-	Piece(bool _color, int _x, int _y): first_move(false), color(_color), position(_x, _y) {}
+public: 
+	Piece(bool _color, bool _first_move, int _x, int _y): color(_color), first_move(_first_move), position(_x, _y) {}
+
+	Piece(const Piece* _piece) : first_move(_piece->first_move), color(_piece->color), position(_piece->position.x, _piece->position.y) {
+		
+	}
 
 	virtual void draw_piece(sf::RenderWindow &window) = 0;
 
@@ -27,6 +31,9 @@ public:
 
 	void make_first_move() {
 		first_move = true;
+	}
+	bool get_first_move() {
+		return first_move;
 	}
 protected:
 	sf::Vector2i position;

@@ -38,22 +38,22 @@ void Board::draw_board(sf::RenderWindow &_window) {
 		t[i].setFillColor(sf::Color(0, 0, 0));
 		t[i].setStyle(sf::Text::Bold);
 	}
-	t[0].setString(L"8");
-	t[1].setString(L"7");
-	t[2].setString(L"6");
-	t[3].setString(L"5");
-	t[4].setString(L"4");
-	t[5].setString(L"3");
-	t[6].setString(L"2");
-	t[7].setString(L"1");
-	t[8].setString(L"A");
-	t[9].setString(L"B");
-	t[10].setString(L"C");
-	t[11].setString(L"D");
-	t[12].setString(L"E");
-	t[13].setString(L"F");
-	t[14].setString(L"G");
-	t[15].setString(L"H");
+	t[0].setString("8");
+	t[1].setString("7");
+	t[2].setString("6");
+	t[3].setString("5");
+	t[4].setString("4");
+	t[5].setString("3");
+	t[6].setString("2");
+	t[7].setString("1");
+	t[8].setString("A");
+	t[9].setString("B");
+	t[10].setString("C");
+	t[11].setString("D");
+	t[12].setString("E");
+	t[13].setString("F");
+	t[14].setString("G");
+	t[15].setString("H");
 	for (int i = 0; i < 8; i++) {
 		t[i].setPosition(15, (float)i * 50 + 50);
 		_window.draw(t[i]);

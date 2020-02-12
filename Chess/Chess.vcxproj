@@ -132,11 +132,13 @@
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="King.cpp" />
     <ClCompile Include="Knight.cpp" />
+    <ClCompile Include="Notation.cpp" />
     <ClCompile Include="Pieces_on_board.cpp" />
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="Cell.cpp" />
     <ClCompile Include="Pawn.cpp" />
     <ClCompile Include="Piece.cpp" />
+    <ClCompile Include="Player_action.cpp" />
     <ClCompile Include="Queen.cpp" />
     <ClCompile Include="Rook.cpp" />
     <ClCompile Include="Test.cpp" />
@@ -146,11 +148,13 @@
     <ClInclude Include="Cursor.h" />
     <ClInclude Include="King.h" />
     <ClInclude Include="Knight.h" />
+    <ClInclude Include="Notation.h" />
     <ClInclude Include="Pieces_on_board.h" />
     <ClInclude Include="Board.h" />
     <ClInclude Include="Cell.h" />
     <ClInclude Include="Pawn.h" />
     <ClInclude Include="Piece.h" />
+    <ClInclude Include="Player_action.h" />
     <ClInclude Include="Queen.h" />
     <ClInclude Include="Rook.h" />
     <ClInclude Include="Time.h" />

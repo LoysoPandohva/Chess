@@ -3,14 +3,14 @@
 
 class King: public Piece {
 public:
-	King(bool _color, int _x, int _y) : Piece(_color, _x, _y)
+	King(bool _color, bool _first_move, int _x, int _y) : Piece(_color, _first_move, _x, _y)
 	{
 		texture.loadFromFile("images//pieces.png");
 		sprite.setTexture(texture);
 		if (color == false) sprite.setTextureRect(sf::IntRect(148, 0, 30, 48));
 		else sprite.setTextureRect(sf::IntRect(2, 50, 30, 48));
 		sprite.setPosition(coord_trans(position).x, coord_trans(position).y);
-	}
+	} 
 
 	void possible_move(Board &_board) {
 		sf::Vector2i current_pos = position;

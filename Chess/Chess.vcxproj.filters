@@ -51,6 +51,12 @@
     <ClCompile Include="Cursor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Notation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Player_action.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.h">
@@ -87,6 +93,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Time.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Notation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Player_action.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

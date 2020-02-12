@@ -3,7 +3,7 @@
 
 class Pawn: public Piece {
 public:
-	Pawn(bool _color, int _x, int _y): Piece(_color, _x, _y) {
+	Pawn(bool _color, bool _first_move, int _x, int _y): Piece(_color, _first_move, _x, _y) {
 		texture.loadFromFile("images//pieces.png");
 		sprite.setTexture(texture);
 		if(color == false) sprite.setTextureRect(sf::IntRect(0, 1, 30, 48));

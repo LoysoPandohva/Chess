@@ -3,7 +3,7 @@
 
 class Rook: public Piece {
 public:
-	Rook(bool _color, int _x, int _y) : Piece(_color, _x, _y)
+	Rook(bool _color, bool _first_move, int _x, int _y) : Piece(_color, _first_move, _x, _y)
 	{
 		texture.loadFromFile("images//pieces.png");
 		sprite.setTexture(texture);

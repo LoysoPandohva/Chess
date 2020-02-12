@@ -21,11 +21,11 @@ void Cell::set_color(sf::Color _new_color) {
 }
 
 void Cell::on_backlight() {
-	backlight = 1;
+	backlight = true;
 	actuality_color = green;
 }
 void Cell::off_backlight() {
-	backlight = 0;
+	backlight = false;
 }
 bool Cell::get_backlight() {
 	return backlight;
@@ -36,7 +36,7 @@ void Cell::employment_cell(bool _color) {
 	piece_color = _color;
 }
 void Cell::free_cell() {
-	employment = 0;
+	employment = false;
 }
 bool Cell::get_employment() {
 	return employment;
