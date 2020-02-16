@@ -141,6 +141,7 @@
     <ClCompile Include="Player_action.cpp" />
     <ClCompile Include="Queen.cpp" />
     <ClCompile Include="Rook.cpp" />
+    <ClCompile Include="Server.cpp" />
     <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -157,6 +158,7 @@
     <ClInclude Include="Player_action.h" />
     <ClInclude Include="Queen.h" />
     <ClInclude Include="Rook.h" />
+    <ClInclude Include="Server.h" />
     <ClInclude Include="Time.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

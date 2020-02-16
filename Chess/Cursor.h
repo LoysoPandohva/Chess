@@ -1,9 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
-#include "Pieces_on_board.h"
-#include "Notation.h"
-
 class Cursor {
 public:
 	Cursor() {
@@ -12,8 +9,8 @@ public:
 		cursor.setPosition(235, 235);
 	}
 	void action() {
-		float speed = 2;
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) { speed = 5; }
+		float speed = 4;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) { speed = 8; }
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
 			cursor.move(0, -speed);
 			if (cursor.getPosition().y + 15 < 55) {

@@ -1,7 +1,4 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-
-#include "Pieces_on_board.h"
 #include "Notation.h"
 #include "Cursor.h"
 
@@ -53,6 +50,9 @@ public:
 	}
 	void change_position(Pieces_on_board &_pob, sf::RenderWindow  &_window) {
 		if (_pob.get_board().get_all_cells(cursor.selected_cell().x, cursor.selected_cell().y).get_employment() == false) {
+			last_pos.x = select_piece->get_position().x;
+			last_pos.y = select_piece->get_position().y;
+
 			_pob.get_board().get_all_cells(select_piece->get_position().x, select_piece->get_position().y).free_cell();
 
 			select_piece->change_position(cursor.selected_cell().x, cursor.selected_cell().y);
@@ -62,6 +62,9 @@ public:
 				_pob.pawn_replacement(_window, select_piece);
 			}
 			select_piece->make_first_move();
+
+			new_pos.x = select_piece->get_position().x;
+			new_pos.y = select_piece->get_position().y;
 
 			cursor.get_cursor().setFillColor(Cursor::unselect);
 			_pob.get_board().off_backlight();
@@ -93,6 +96,37 @@ public:
 			}
 		}
 		return false;
+	}
+
+	void anamy_move(Pieces_on_board &_pob, sf::Vector2i _from, sf::Vector2i _to) {
+		std::shared_ptr<Piece> selected_piece;
+		for (auto &p : _pob.get_pieces()) {
+			if (p->get_position().x == _from.x && p->get_position().y == _from.y) {
+				selected_piece = p;
+			}
+		}
+
+		if (_pob.get_board().get_all_cells(_to.x, _to.y).get_employment() == true) {
+			if (_pob.get_board().get_all_cells(_to.x, _to.y).get_piece_color() != selected_piece->get_color()) {
+				for (auto &p : _pob.get_pieces()) {
+					if (p->get_position().x == _to.x && p->get_position().y == _to.y) {
+						_pob.kill_piece(p);
+						break;
+					}
+				}
+			}
+		}
+
+		if (_pob.get_board().get_all_cells(_to.x, _to.y).get_employment() == false) {
+			_pob.get_board().get_all_cells(selected_piece->get_position().x, selected_piece->get_position().y).free_cell();
+			selected_piece->change_position(_to.x, _to.y);
+			_pob.get_board().get_all_cells(_to.x, _to.y).employment_cell(selected_piece->get_color());
+
+			//bool is_mate = true;
+			//if (check_move(_pob, _window, _king) == false) {
+			//	is_mate = false;
+			//}
+		}
 	}
 
 	bool between_rook_and_king(Pieces_on_board &_pob, std::shared_ptr<Piece> &_s_p, std::shared_ptr<Piece> _p) {
@@ -276,6 +310,15 @@ public:
 		return cursor;
 	}
 
+	bool get_whose_move() {
+		return whose_move;
+	}
+	void change_move() {
+		whose_move = !whose_move;
+	}
+
+	sf::Vector2i last_pos;
+	sf::Vector2i new_pos;
 private:
 	Pieces_on_board &_pob;
 	Cursor cursor;
@@ -284,9 +327,6 @@ private:
 	bool piece_is_select;
 	bool whose_move;
 
-	void change_move() {
-		whose_move = !whose_move;
-	}
 
 	void notificaion(sf::RenderWindow &_window, const char* _notification, int _fontsize) {
 		sf::RectangleShape shape(sf::Vector2f(180, 90));
@@ -310,11 +350,18 @@ private:
 		t[1].setFillColor(sf::Color::White);
 
 		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
 		while (true) {
+			_window.clear(sf::Color(200, 200, 200));
+
+			_pob.draw(_window);
+			cursor.draw(_window);
+
 			_window.draw(shape);
 			for (int i = 0; i < 2; i++) {
 				_window.draw(t[i]);
 			}
+
 			_window.display();
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
