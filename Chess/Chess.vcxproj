@@ -129,6 +129,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Bishop.cpp" />
+    <ClCompile Include="Client.cpp" />
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="King.cpp" />
     <ClCompile Include="Knight.cpp" />
@@ -146,6 +147,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bishop.h" />
+    <ClInclude Include="Client.h" />
     <ClInclude Include="Cursor.h" />
     <ClInclude Include="King.h" />
     <ClInclude Include="Knight.h" />

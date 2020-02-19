@@ -4,7 +4,8 @@
 
 class Player_action {
 public:
-	Player_action(Pieces_on_board &_pob) : _pob(_pob), cursor(), piece_is_select(false), whose_move(false), notation("notation.txt") {
+	Player_action(Pieces_on_board &_pob) : _pob(_pob), cursor(), piece_is_select(false), 
+		whose_move(false), notation("notation.txt"), end(false) {
 		notation.add_move(_pob, whose_move);
 	}
 
@@ -52,6 +53,9 @@ public:
 		if (_pob.get_board().get_all_cells(cursor.selected_cell().x, cursor.selected_cell().y).get_employment() == false) {
 			last_pos.x = select_piece->get_position().x;
 			last_pos.y = select_piece->get_position().y;
+			new_pos.x = cursor.selected_cell().x;
+			new_pos.y = cursor.selected_cell().y;
+			new_piece = 0;
 
 			_pob.get_board().get_all_cells(select_piece->get_position().x, select_piece->get_position().y).free_cell();
 
@@ -59,12 +63,9 @@ public:
 			_pob.get_board().get_all_cells(cursor.selected_cell().x, cursor.selected_cell().y).employment_cell(select_piece->get_color());
 
 			if (strcmp(typeid(*select_piece.get()).name(), "class Pawn") == 0) {
-				_pob.pawn_replacement(_window, select_piece);
+				new_piece = _pob.select_piece_for_replacement(_window, select_piece);
 			}
 			select_piece->make_first_move();
-
-			new_pos.x = select_piece->get_position().x;
-			new_pos.y = select_piece->get_position().y;
 
 			cursor.get_cursor().setFillColor(Cursor::unselect);
 			_pob.get_board().off_backlight();
@@ -76,13 +77,14 @@ public:
 			notation.add_move(_pob, whose_move);
 		}
 	}
-	bool make_move(Pieces_on_board &_pob, sf::RenderWindow  &_window) {
+	void make_move(Pieces_on_board &_pob, sf::RenderWindow  &_window) {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && piece_is_select == true) {
 			if (_pob.get_board().get_all_cells(cursor.selected_cell().x, cursor.selected_cell().y).get_backlight() == true) {
 				eat(_pob);
 				change_position(_pob, _window);
-				castling(_pob);
-				if (std::shared_ptr<Piece> king_who_shah = shah(_pob, _window)) {
+				castling(_pob, cursor.selected_cell().x, cursor.selected_cell().y);
+
+				if (king_who_shah = shah(_pob, _window)) {
 					if (checkmate(_pob, _window, king_who_shah) == true) {
 						if (king_who_shah->get_color() == true) {
 							notificaion(_window, "WHITE WIN", 29);
@@ -90,24 +92,16 @@ public:
 						if (king_who_shah->get_color() == false) {
 							notificaion(_window, "BLACK WIN", 29);
 						}
-						return true;
+						end = true;
 					}
 				}
 			}
 		}
-		return false;
 	}
 
-	void anamy_move(Pieces_on_board &_pob, sf::Vector2i _from, sf::Vector2i _to) {
-		std::shared_ptr<Piece> selected_piece;
-		for (auto &p : _pob.get_pieces()) {
-			if (p->get_position().x == _from.x && p->get_position().y == _from.y) {
-				selected_piece = p;
-			}
-		}
-
+	void enemy_eat(sf::Vector2i _to) {
 		if (_pob.get_board().get_all_cells(_to.x, _to.y).get_employment() == true) {
-			if (_pob.get_board().get_all_cells(_to.x, _to.y).get_piece_color() != selected_piece->get_color()) {
+			if (_pob.get_board().get_all_cells(_to.x, _to.y).get_piece_color() != select_piece->get_color()) {
 				for (auto &p : _pob.get_pieces()) {
 					if (p->get_position().x == _to.x && p->get_position().y == _to.y) {
 						_pob.kill_piece(p);
@@ -116,16 +110,39 @@ public:
 				}
 			}
 		}
-
+	}
+	void enemy_change_position(sf::Vector2i _to, int _new_piece) {
 		if (_pob.get_board().get_all_cells(_to.x, _to.y).get_employment() == false) {
-			_pob.get_board().get_all_cells(selected_piece->get_position().x, selected_piece->get_position().y).free_cell();
-			selected_piece->change_position(_to.x, _to.y);
-			_pob.get_board().get_all_cells(_to.x, _to.y).employment_cell(selected_piece->get_color());
+			_pob.get_board().get_all_cells(select_piece->get_position().x, select_piece->get_position().y).free_cell();
+			select_piece->change_position(_to.x, _to.y);
+			_pob.get_board().get_all_cells(_to.x, _to.y).employment_cell(select_piece->get_color());
 
-			//bool is_mate = true;
-			//if (check_move(_pob, _window, _king) == false) {
-			//	is_mate = false;
-			//}
+			if (strcmp(typeid(*select_piece.get()).name(), "class Pawn") == 0) {
+				_pob.pawn_replacement(select_piece, _new_piece);
+			}
+
+			select_piece->make_first_move();
+			change_move();
+			notation.add_move(_pob, whose_move);
+			select_piece = nullptr;
+		}
+	}
+	void enemy_move(sf::Vector2i _from, sf::Vector2i _to, int _new_piece, sf::RenderWindow  &_window) {
+		for (auto &p : _pob.get_pieces()) {
+			if (p->get_position().x == _from.x && p->get_position().y == _from.y) {
+				select_piece = p;
+				break;
+			}
+		}
+
+		enemy_eat(_to);
+		enemy_change_position(_to, _new_piece);
+		castling(_pob, _to.x, _to.y);
+
+		if (king_who_shah = shah(_pob, _window)) {
+			if (checkmate(_pob, _window, king_who_shah) == true) {
+				end = true;
+			}
 		}
 	}
 
@@ -168,10 +185,16 @@ public:
 			}
 		}
 	}
-	void castling(Pieces_on_board &_pob) {
+	void castling(Pieces_on_board &_pob, int _x, int _y) {
 		if (select_piece != nullptr) {
 			for (auto &p : _pob.get_pieces()) {
-				if (p->get_position().x == cursor.selected_cell().x && p->get_position().y == cursor.selected_cell().y) {
+				if (p->get_position().x == _x && p->get_position().y == _y) {
+					last_pos.x = select_piece->get_position().x;
+					last_pos.y = select_piece->get_position().y;
+					new_pos.x = _x;
+					new_pos.y = _y;
+					new_piece = 0;
+
 					_pob.get_board().get_all_cells(p->get_position().x, p->get_position().y).free_cell();
 					_pob.get_board().get_all_cells(select_piece->get_position().x, select_piece->get_position().y).free_cell();
 					if (p->get_position().x > select_piece->get_position().x) {
@@ -201,13 +224,13 @@ public:
 	}
 
 	std::shared_ptr<Piece> shah(Pieces_on_board &_pob, sf::RenderWindow  &_window) {
-		static std::shared_ptr<Piece> king_who_shah;
 		for (auto &p : _pob.get_pieces()) {
 			p->possible_move(_pob.get_board());
 		}
 		for (auto &p : _pob.get_pieces()) {
 			if (strcmp(typeid(*p.get()).name(), "class King") == 0) {
 				if (_pob.get_board().get_all_cells(p->get_position().x, p->get_position().y).get_backlight() == true) {
+					_pob.get_board().off_backlight();
 					if (king_who_shah == p) {
 						notation.move_back(_pob, whose_move);
 						shah(_pob, _window);
@@ -221,7 +244,6 @@ public:
 						notificaion(_window, "You must protect\n    the king!", 15);
 						return nullptr;
 					}
-					_pob.get_board().off_backlight();
 					return king_who_shah;
 				}
 			}
@@ -265,7 +287,7 @@ public:
 						}
 					}
 
- 					if (_pob.get_board().get_all_cells(x, y).get_employment() == false) {
+					if (_pob.get_board().get_all_cells(x, y).get_employment() == false) {
 						_pob.get_board().get_all_cells(_piece->get_position().x, _piece->get_position().y).free_cell();
 						_piece->change_position(x, y);
 						_pob.get_board().get_all_cells(x, y).employment_cell(_piece->get_color());
@@ -317,17 +339,6 @@ public:
 		whose_move = !whose_move;
 	}
 
-	sf::Vector2i last_pos;
-	sf::Vector2i new_pos;
-private:
-	Pieces_on_board &_pob;
-	Cursor cursor;
-	Notation notation;
-	std::shared_ptr<Piece> select_piece;
-	bool piece_is_select;
-	bool whose_move;
-
-
 	void notificaion(sf::RenderWindow &_window, const char* _notification, int _fontsize) {
 		sf::RectangleShape shape(sf::Vector2f(180, 90));
 		shape.setFillColor(sf::Color(0, 0, 0, 255));
@@ -342,7 +353,7 @@ private:
 		t[0].setPosition(160 + 9, 215);
 		t[0].setFillColor(sf::Color::White);
 		t[0].setStyle(sf::Text::Bold);
-		
+
 		t[1].setString("press ENTER to continue");
 		t[1].setFont(font);
 		t[1].setCharacterSize(12);
@@ -369,4 +380,26 @@ private:
 			}
 		}
 	}
+
+	sf::Vector2i last_pos;
+	sf::Vector2i new_pos;
+	int new_piece;
+
+	std::shared_ptr<Piece> &get_king_who_shah() {
+		return king_who_shah;
+	}
+	bool get_end() {
+		return end;
+	}
+
+private:
+	Pieces_on_board &_pob;
+	Cursor cursor;
+	Notation notation;
+	std::shared_ptr<Piece> select_piece;
+	bool piece_is_select;
+	bool whose_move;
+	
+	std::shared_ptr<Piece> king_who_shah;
+	bool end;
 };
