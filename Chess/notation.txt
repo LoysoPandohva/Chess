@@ -34,3 +34,255 @@ class Bishop:1 0 5 7
 class Knight:1 0 6 7
 class Rook:1 0 7 7
 
+Move ¹_1
+1
+32
+class Pawn:0 0 0 1
+class Pawn:0 0 1 1
+class Pawn:0 0 2 1
+class Pawn:0 1 3 3
+class Pawn:0 0 4 1
+class Pawn:0 0 5 1
+class Pawn:0 0 6 1
+class Pawn:0 0 7 1
+class Rook:0 0 0 0
+class Knight:0 0 1 0
+class Bishop:0 0 2 0
+class King:0 0 3 0
+class Queen:0 0 4 0
+class Bishop:0 0 5 0
+class Knight:0 0 6 0
+class Rook:0 0 7 0
+class Pawn:1 0 0 6
+class Pawn:1 0 1 6
+class Pawn:1 0 2 6
+class Pawn:1 0 3 6
+class Pawn:1 0 4 6
+class Pawn:1 0 5 6
+class Pawn:1 0 6 6
+class Pawn:1 0 7 6
+class Rook:1 0 0 7
+class Knight:1 0 1 7
+class Bishop:1 0 2 7
+class King:1 0 3 7
+class Queen:1 0 4 7
+class Bishop:1 0 5 7
+class Knight:1 0 6 7
+class Rook:1 0 7 7
+
+Move ¹_2
+0
+32
+class Pawn:0 0 0 1
+class Pawn:0 0 1 1
+class Pawn:0 0 2 1
+class Pawn:0 1 3 3
+class Pawn:0 0 4 1
+class Pawn:0 0 5 1
+class Pawn:0 0 6 1
+class Pawn:0 0 7 1
+class Rook:0 0 0 0
+class Knight:0 0 1 0
+class Bishop:0 0 2 0
+class King:0 0 3 0
+class Queen:0 0 4 0
+class Bishop:0 0 5 0
+class Knight:0 0 6 0
+class Rook:0 0 7 0
+class Pawn:1 0 0 6
+class Pawn:1 0 1 6
+class Pawn:1 0 2 6
+class Pawn:1 1 3 4
+class Pawn:1 0 4 6
+class Pawn:1 0 5 6
+class Pawn:1 0 6 6
+class Pawn:1 0 7 6
+class Rook:1 0 0 7
+class Knight:1 0 1 7
+class Bishop:1 0 2 7
+class King:1 0 3 7
+class Queen:1 0 4 7
+class Bishop:1 0 5 7
+class Knight:1 0 6 7
+class Rook:1 0 7 7
+
+Move ¹_3
+1
+32
+class Pawn:0 0 0 1
+class Pawn:0 0 1 1
+class Pawn:0 1 2 2
+class Pawn:0 1 3 3
+class Pawn:0 0 4 1
+class Pawn:0 0 5 1
+class Pawn:0 0 6 1
+class Pawn:0 0 7 1
+class Rook:0 0 0 0
+class Knight:0 0 1 0
+class Bishop:0 0 2 0
+class King:0 0 3 0
+class Queen:0 0 4 0
+class Bishop:0 0 5 0
+class Knight:0 0 6 0
+class Rook:0 0 7 0
+class Pawn:1 0 0 6
+class Pawn:1 0 1 6
+class Pawn:1 0 2 6
+class Pawn:1 1 3 4
+class Pawn:1 0 4 6
+class Pawn:1 0 5 6
+class Pawn:1 0 6 6
+class Pawn:1 0 7 6
+class Rook:1 0 0 7
+class Knight:1 0 1 7
+class Bishop:1 0 2 7
+class King:1 0 3 7
+class Queen:1 0 4 7
+class Bishop:1 0 5 7
+class Knight:1 0 6 7
+class Rook:1 0 7 7
+
+Move ¹_4
+0
+32
+class Pawn:0 0 0 1
+class Pawn:0 0 1 1
+class Pawn:0 1 2 2
+class Pawn:0 1 3 3
+class Pawn:0 0 4 1
+class Pawn:0 0 5 1
+class Pawn:0 0 6 1
+class Pawn:0 0 7 1
+class Rook:0 0 0 0
+class Knight:0 0 1 0
+class Bishop:0 0 2 0
+class King:0 0 3 0
+class Queen:0 0 4 0
+class Bishop:0 0 5 0
+class Knight:0 0 6 0
+class Rook:0 0 7 0
+class Pawn:1 0 0 6
+class Pawn:1 0 1 6
+class Pawn:1 0 2 6
+class Pawn:1 1 3 4
+class Pawn:1 1 4 5
+class Pawn:1 0 5 6
+class Pawn:1 0 6 6
+class Pawn:1 0 7 6
+class Rook:1 0 0 7
+class Knight:1 0 1 7
+class Bishop:1 0 2 7
+class King:1 0 3 7
+class Queen:1 0 4 7
+class Bishop:1 0 5 7
+class Knight:1 0 6 7
+class Rook:1 0 7 7
+
+Move ¹_5
+1
+32
+class Pawn:0 0 0 1
+class Pawn:0 1 1 3
+class Pawn:0 1 2 2
+class Pawn:0 1 3 3
+class Pawn:0 0 4 1
+class Pawn:0 0 5 1
+class Pawn:0 0 6 1
+class Pawn:0 0 7 1
+class Rook:0 0 0 0
+class Knight:0 0 1 0
+class Bishop:0 0 2 0
+class King:0 0 3 0
+class Queen:0 0 4 0
+class Bishop:0 0 5 0
+class Knight:0 0 6 0
+class Rook:0 0 7 0
+class Pawn:1 0 0 6
+class Pawn:1 0 1 6
+class Pawn:1 0 2 6
+class Pawn:1 1 3 4
+class Pawn:1 1 4 5
+class Pawn:1 0 5 6
+class Pawn:1 0 6 6
+class Pawn:1 0 7 6
+class Rook:1 0 0 7
+class Knight:1 0 1 7
+class Bishop:1 0 2 7
+class King:1 0 3 7
+class Queen:1 0 4 7
+class Bishop:1 0 5 7
+class Knight:1 0 6 7
+class Rook:1 0 7 7
+
+Move ¹_6
+0
+32
+class Pawn:0 0 0 1
+class Pawn:0 1 1 3
+class Pawn:0 1 2 2
+class Pawn:0 1 3 3
+class Pawn:0 0 4 1
+class Pawn:0 0 5 1
+class Pawn:0 0 6 1
+class Pawn:0 0 7 1
+class Rook:0 0 0 0
+class Knight:0 0 1 0
+class Bishop:0 0 2 0
+class King:0 0 3 0
+class Queen:0 0 4 0
+class Bishop:0 0 5 0
+class Knight:0 0 6 0
+class Rook:0 0 7 0
+class Pawn:1 0 0 6
+class Pawn:1 0 1 6
+class Pawn:1 0 2 6
+class Pawn:1 1 3 4
+class Pawn:1 1 4 5
+class Pawn:1 0 5 6
+class Pawn:1 0 6 6
+class Pawn:1 1 7 4
+class Rook:1 0 0 7
+class Knight:1 0 1 7
+class Bishop:1 0 2 7
+class King:1 0 3 7
+class Queen:1 0 4 7
+class Bishop:1 0 5 7
+class Knight:1 0 6 7
+class Rook:1 0 7 7
+
+Move ¹_7
+1
+32
+class Pawn:0 1 0 3
+class Pawn:0 1 1 3
+class Pawn:0 1 2 2
+class Pawn:0 1 3 3
+class Pawn:0 0 4 1
+class Pawn:0 0 5 1
+class Pawn:0 0 6 1
+class Pawn:0 0 7 1
+class Rook:0 0 0 0
+class Knight:0 0 1 0
+class Bishop:0 0 2 0
+class King:0 0 3 0
+class Queen:0 0 4 0
+class Bishop:0 0 5 0
+class Knight:0 0 6 0
+class Rook:0 0 7 0
+class Pawn:1 0 0 6
+class Pawn:1 0 1 6
+class Pawn:1 0 2 6
+class Pawn:1 1 3 4
+class Pawn:1 1 4 5
+class Pawn:1 0 5 6
+class Pawn:1 0 6 6
+class Pawn:1 1 7 4
+class Rook:1 0 0 7
+class Knight:1 0 1 7
+class Bishop:1 0 2 7
+class King:1 0 3 7
+class Queen:1 0 4 7
+class Bishop:1 0 5 7
+class Knight:1 0 6 7
+class Rook:1 0 7 7
+

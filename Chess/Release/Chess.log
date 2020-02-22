@@ -1,6 +1,22 @@
-﻿  Generating code
-  0 of 801 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+﻿  Bishop.cpp
+  Board.cpp
+  Cell.cpp
+  Client.cpp
+  Cursor.cpp
+  King.cpp
+  Knight.cpp
+  Notation.cpp
+  Pawn.cpp
+  Piece.cpp
+  Pieces_on_board.cpp
+  Player_action.cpp
+  Queen.cpp
+  Rook.cpp
+  Server.cpp
+  Test.cpp
+  Generating code
+  28 of 804 functions ( 3.5%) were compiled, the rest were copied from previous compilation.
+    7 functions were new in current compilation
+    36 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Chess.vcxproj -> C:\Users\DNS\Desktop\Chess\Release\Chess.exe

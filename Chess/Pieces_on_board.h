@@ -151,16 +151,22 @@ public:
 	Board &get_board() {
 		return board;
 	}
-	void draw(sf::RenderWindow &_window) {
-		board.draw_board(_window);
+	void draw_for_white(sf::RenderWindow &_window) {
+		board.draw_board_for_white(_window);
+		for (const auto &p : pob) {
+			p->change_position(7 - p->get_position().x, 7 - p->get_position().y);
+			p->draw_piece(_window);
+			p->change_position(7 - p->get_position().x, 7 - p->get_position().y);
+		}
+	}
+	void draw_for_black(sf::RenderWindow &_window) {
+		board.draw_board_for_black(_window);
 		for (const auto &p : pob) {
 			p->draw_piece(_window);
 		}
 	}
 
 private:
-	
-
 	std::list<std::shared_ptr<Piece>> pob;
 	Board board;
 };

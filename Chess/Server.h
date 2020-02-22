@@ -40,7 +40,6 @@ public:
 			std::cout << "Start listenin at port " << ntohs(addr.sin_port) << std::endl;
 		}
 	}
-
 	void closeServer() {
 		closesocket(my_socket);
 		WSACleanup();
@@ -216,7 +215,7 @@ public:
 		return res;
 	}
 
-	void handle(sf::RenderWindow  &_window, Pieces_on_board &_pob, Player_action &_player_action) {
+	void handle(sf::RenderWindow  &_window, Player_action &_player_action) {
 		SOCKET acceptS;
 		SOCKADDR_IN addr_c;
 		int addrlen = sizeof(addr_c);
@@ -240,9 +239,9 @@ public:
 			if (event.type == sf::Event::Closed) _window.close();
 
 			_player_action.get_cursor().action();
-			_player_action.selecting_piece(_window, _pob);
+			_player_action.selecting_piece(_window, _player_action.get_pob());
 			if (_player_action.get_whose_move() == false) {
-				_player_action.make_move(_pob, _window);
+				_player_action.make_move(_player_action.get_pob(), _window);
 				if (_player_action.get_whose_move() == true) {
 					const int size = 6;
 					char buf[size];
@@ -251,10 +250,10 @@ public:
 					memset(buf, 0, size);
 				}
 			}
-			
+
 			_window.clear(sf::Color(200, 200, 200));
 
-			_pob.draw(_window);
+			_player_action.get_pob().draw_for_white(_window);
 			_player_action.get_cursor().draw(_window);
 
 			show_time(_window, ptr1, ptr2);

@@ -23,11 +23,18 @@ public:
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 				cursor.set_cursor(sf::Vector2f((float)m_cursor.get_mause_pos(_window).x, (float)m_cursor.get_mause_pos(_window).y));
 			}
-			if (_pob.get_board().get_all_cells(cursor.selected_cell().x, cursor.selected_cell().y).get_employment() == true) {
-				if (_pob.get_board().get_all_cells(cursor.selected_cell().x, cursor.selected_cell().y).get_piece_color() == your_color) {
+			sf::Vector2i sel_cell;
+			if (your_color == true) {
+				sel_cell = sf::Vector2i(cursor.selected_cell().x, cursor.selected_cell().y);
+			}
+			else {
+				sel_cell = sf::Vector2i(7 - cursor.selected_cell().x, 7 - cursor.selected_cell().y);
+			}
+			if (_pob.get_board().get_all_cells(sel_cell.x, sel_cell.y).get_employment() == true) {
+				if (_pob.get_board().get_all_cells(sel_cell.x, sel_cell.y).get_piece_color() == your_color) {
 					cursor.get_cursor().setFillColor(Cursor::select);
 					for (auto &p : _pob.get_pieces()) {
-						if (p->get_position().x == cursor.selected_cell().x && p->get_position().y == cursor.selected_cell().y) {
+						if (p->get_position().x == sel_cell.x && p->get_position().y == sel_cell.y) {
 							select_piece = p;
 							select_piece->possible_move(_pob.get_board());
 							possible_castling(_pob);
@@ -41,11 +48,18 @@ public:
 	}
 
 	void eat(Pieces_on_board &_pob) {
-		if (_pob.get_board().get_all_cells(cursor.selected_cell().x, cursor.selected_cell().y).get_employment() == true) {
-			if (_pob.get_board().get_all_cells(cursor.selected_cell().x, cursor.selected_cell().y).get_piece_color() !=
+		sf::Vector2i sel_cell;
+		if (your_color == true) {
+			sel_cell = sf::Vector2i(cursor.selected_cell().x, cursor.selected_cell().y);
+		}
+		else {
+			sel_cell = sf::Vector2i(7 - cursor.selected_cell().x, 7 - cursor.selected_cell().y);
+		}
+		if (_pob.get_board().get_all_cells(sel_cell.x, sel_cell.y).get_employment() == true) {
+			if (_pob.get_board().get_all_cells(sel_cell.x, sel_cell.y).get_piece_color() !=
 				select_piece->get_color()) {
 				for (auto &p : _pob.get_pieces()) {
-					if (p->get_position().x == cursor.selected_cell().x && p->get_position().y == cursor.selected_cell().y) {
+					if (p->get_position().x == sel_cell.x && p->get_position().y == sel_cell.y) {
 						_pob.kill_piece(p);
 						break;
 					}
@@ -54,17 +68,24 @@ public:
 		}
 	}
 	void change_position(Pieces_on_board &_pob, sf::RenderWindow  &_window) {
-		if (_pob.get_board().get_all_cells(cursor.selected_cell().x, cursor.selected_cell().y).get_employment() == false) {
+		sf::Vector2i sel_cell;
+		if (your_color == true) {
+			sel_cell = sf::Vector2i(cursor.selected_cell().x, cursor.selected_cell().y);
+		}
+		else {
+			sel_cell = sf::Vector2i(7 - cursor.selected_cell().x, 7 - cursor.selected_cell().y);
+		}
+		if (_pob.get_board().get_all_cells(sel_cell.x, sel_cell.y).get_employment() == false) {
 			last_pos.x = select_piece->get_position().x;
 			last_pos.y = select_piece->get_position().y;
-			new_pos.x = cursor.selected_cell().x;
-			new_pos.y = cursor.selected_cell().y;
+			new_pos.x = sel_cell.x;
+			new_pos.y = sel_cell.y;
 			new_piece = 0;
 
 			_pob.get_board().get_all_cells(select_piece->get_position().x, select_piece->get_position().y).free_cell();
 
-			select_piece->change_position(cursor.selected_cell().x, cursor.selected_cell().y);
-			_pob.get_board().get_all_cells(cursor.selected_cell().x, cursor.selected_cell().y).employment_cell(select_piece->get_color());
+			select_piece->change_position(sel_cell.x, sel_cell.y);
+			_pob.get_board().get_all_cells(sel_cell.x, sel_cell.y).employment_cell(select_piece->get_color());
 
 
 
@@ -88,10 +109,17 @@ public:
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
 				cursor.set_cursor(sf::Vector2f((float)m_cursor.get_mause_pos(_window).x, (float)m_cursor.get_mause_pos(_window).y));
 			}
-			if (_pob.get_board().get_all_cells(cursor.selected_cell().x, cursor.selected_cell().y).get_backlight() == true) {
+			sf::Vector2i sel_cell;
+			if (your_color == true) {
+				sel_cell = sf::Vector2i(cursor.selected_cell().x, cursor.selected_cell().y);
+			}
+			else {
+				sel_cell = sf::Vector2i(7 - cursor.selected_cell().x, 7 - cursor.selected_cell().y);
+			}
+			if (_pob.get_board().get_all_cells(sel_cell.x, sel_cell.y).get_backlight() == true) {
 				eat(_pob);
 				change_position(_pob, _window);
-				castling(_pob, cursor.selected_cell().x, cursor.selected_cell().y);
+				castling(_pob, sel_cell.x, sel_cell.y);
 
 				if (shah(_pob, _window)) {
 					if (checkmate(_pob, king_who_shah) == true) {
@@ -345,17 +373,6 @@ public:
 		return true;
 	}
 
-	Cursor &get_cursor() {
-		return cursor;
-	}
-
-	bool get_whose_move() {
-		return whose_move;
-	}
-	void change_move() {
-		whose_move = !whose_move;
-	}
-
 	void notificaion(sf::RenderWindow &_window, const char* _notification, int _fontsize) {
 		sf::RectangleShape shape(sf::Vector2f(180, 90));
 		shape.setFillColor(sf::Color(0, 0, 0, 255));
@@ -383,7 +400,12 @@ public:
 		while (true) {
 			_window.clear(sf::Color(200, 200, 200));
 
-			_pob.draw(_window);
+			if (your_color == false) {
+				_pob.draw_for_white(_window);
+			}
+			else {
+				_pob.draw_for_black(_window);
+			}
 			cursor.draw(_window);
 
 			_window.draw(shape);
@@ -404,13 +426,25 @@ public:
 	sf::Vector2i new_pos;
 	int new_piece;
 
+
+	Cursor &get_cursor() {
+		return cursor;
+	}
+	bool get_whose_move() {
+		return whose_move;
+	}
+	void change_move() {
+		whose_move = !whose_move;
+	}
 	std::shared_ptr<Piece> &get_king_who_shah() {
 		return king_who_shah;
 	}
 	bool get_end() {
 		return end;
 	}
-
+	Pieces_on_board &get_pob() {
+		return _pob;
+	}
 private:
 	Pieces_on_board &_pob;
 	Cursor cursor;

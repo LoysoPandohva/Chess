@@ -10,6 +10,9 @@
 class Client {
 public:
 	Client() : port(27015), lose_connection(false) {}
+	~Client() {
+		close_client();
+	}
 
 	bool start_client() {
 		int iResult = WSAStartup(MAKEWORD(2, 2), &wData);
@@ -40,11 +43,6 @@ public:
 		printf("Client created\n");
 		return true;
 	}
-
-	~Client() {
-		close_client();
-	}
-
 	void close_client() {
 		closesocket(c_sock);
 		WSACleanup();
@@ -220,7 +218,7 @@ public:
 		return res;
 	}
 
-	void handle(sf::RenderWindow  &_window, Pieces_on_board &_pob, Player_action &_player_action) {
+	void handle(sf::RenderWindow  &_window, Player_action &_player_action) {
 		std::thread th(&Client::listen_opponent, this, std::ref(_window), std::ref(c_sock), std::ref(_player_action));
 		th.detach();
 
@@ -236,9 +234,9 @@ public:
 				_window.close();
 
 			_player_action.get_cursor().action();
-			_player_action.selecting_piece(_window, _pob);
+			_player_action.selecting_piece(_window, _player_action.get_pob());
 			if (_player_action.get_whose_move() == true) {
-				_player_action.make_move(_pob, _window);
+				_player_action.make_move(_player_action.get_pob(), _window);
 				if (_player_action.get_whose_move() == false) {
 					const int size = 6;
 					char buf[size];
@@ -250,9 +248,8 @@ public:
 
 			_window.clear(sf::Color(200, 200, 200));
 
-			_pob.draw(_window);
+			_player_action.get_pob().draw_for_black(_window);
 			_player_action.get_cursor().draw(_window);
-
 			show_time(_window, ptr1, ptr2);
 
 			_window.display();

@@ -9,12 +9,12 @@ int main() {
 	if (client.start_client()) {
 		Pieces_on_board pob;
 		Player_action player_action(pob, true);
-		client.handle(window, pob, player_action);
+		client.handle(window, player_action);
 	}
 	else {
 		Pieces_on_board pob;
 		Player_action player_action(pob, false);
 		server.startServer();
-		server.handle(window, pob, player_action);
+		server.handle(window, player_action);
 	}
 }

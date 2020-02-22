@@ -23,9 +23,9 @@ public:
 	static const sf::Color green;
 
 private:
-	bool backlight = false;
-	bool employment = false;
-	bool piece_color = false;
+	bool backlight;
+	bool employment;
+	bool piece_color;
 	sf::RectangleShape square;
 	sf::Color actuality_color;
 };

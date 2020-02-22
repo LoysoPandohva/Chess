@@ -48,7 +48,7 @@ public:
 			cursor.setPosition(_pos.x - 15, 445 - 15);
 		}
 		else if ((_pos.x + 15.f) < 55 && (_pos.x + 15.f) < 445 && (_pos.y + 15.f) > 55 && (_pos.y + 15.f) < 445) {
-			cursor.setPosition(45 - 15, _pos.y - 15);
+			cursor.setPosition(55 - 15, _pos.y - 15);
 		}
 		else if ((_pos.x + 15.f) > 55 && (_pos.x + 15.f) > 445 && (_pos.y + 15.f) > 55 && (_pos.y + 15.f) < 445) {
 			cursor.setPosition(445 - 15, _pos.y - 15);
@@ -66,7 +66,7 @@ public:
 	void draw(sf::RenderWindow  &_window) {
 		_window.draw(cursor);
 	}
-	
+
 	static const sf::Color select;
 	static const sf::Color unselect;
 
