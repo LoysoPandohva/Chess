@@ -106,7 +106,10 @@ public:
 			t[select].move(13, 0);
 
 			std::this_thread::sleep_for(std::chrono::milliseconds(150));
+			sf::Event event;
 			while (true) {
+				_window.pollEvent(event);
+
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
 					if (select + 1 <= 4) {
 						t[select].move(-13, 0);

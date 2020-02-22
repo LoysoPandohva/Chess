@@ -37,6 +37,24 @@ public:
 		}
 	}
 
+	void set_cursor(sf::Vector2f _pos) {
+		if ((_pos.x + 15.f) > 55 && (_pos.x + 15.f) < 445 && (_pos.y + 15.f) > 55 && (_pos.y + 15.f) < 445) {
+			cursor.setPosition(_pos.x - 15, _pos.y - 15);
+		}
+		else if ((_pos.x + 15.f) > 55 && (_pos.x + 15.f) < 445 && (_pos.y + 15.f) < 55 && (_pos.y + 15.f) < 445) {
+			cursor.setPosition(_pos.x - 15, 55 - 15);
+		}
+		else if ((_pos.x + 15.f) > 55 && (_pos.x + 15.f) < 445 && (_pos.y + 15.f) > 55 && (_pos.y + 15.f) > 445) {
+			cursor.setPosition(_pos.x - 15, 445 - 15);
+		}
+		else if ((_pos.x + 15.f) < 55 && (_pos.x + 15.f) < 445 && (_pos.y + 15.f) > 55 && (_pos.y + 15.f) < 445) {
+			cursor.setPosition(45 - 15, _pos.y - 15);
+		}
+		else if ((_pos.x + 15.f) > 55 && (_pos.x + 15.f) > 445 && (_pos.y + 15.f) > 55 && (_pos.y + 15.f) < 445) {
+			cursor.setPosition(445 - 15, _pos.y - 15);
+		}
+	}
+
 	sf::Vector2i selected_cell() {
 		return sf::Vector2i(static_cast<int>(cursor.getPosition().x + 15) / 50 - 1,
 			static_cast<int>(cursor.getPosition().y + 15) / 50 - 1);

@@ -133,6 +133,7 @@
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="King.cpp" />
     <ClCompile Include="Knight.cpp" />
+    <ClCompile Include="Mouse_cursor.cpp" />
     <ClCompile Include="Notation.cpp" />
     <ClCompile Include="Pieces_on_board.cpp" />
     <ClCompile Include="Board.cpp" />
@@ -151,6 +152,7 @@
     <ClInclude Include="Cursor.h" />
     <ClInclude Include="King.h" />
     <ClInclude Include="Knight.h" />
+    <ClInclude Include="Mouse_cursor.h" />
     <ClInclude Include="Notation.h" />
     <ClInclude Include="Pieces_on_board.h" />
     <ClInclude Include="Board.h" />
