@@ -6,7 +6,7 @@ const sf::Color Cell::green = sf::Color(0, 100, 0, 80);
 
 Cell::Cell() : backlight(false), employment(false), piece_color(false) {
 	square.setSize(sf::Vector2f(50.f, 50.f));
-	square.setOutlineThickness(1);
+	square.setOutlineThickness(2);
 	square.setOutlineColor(sf::Color(0, 0, 0));
 }
 

@@ -13,12 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\NewFilter1">
+      <UniqueIdentifier>{1a5dfcc9-9a54-4275-ba24-2c25bcc97204}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Board.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Cell.cpp">
@@ -54,16 +54,16 @@
     <ClCompile Include="Notation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Player_action.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Server.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Client.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Mouse_cursor.cpp">
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -107,16 +107,13 @@
     <ClInclude Include="Notation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Player_action.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Server.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Client.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Mouse_cursor.h">
+    <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

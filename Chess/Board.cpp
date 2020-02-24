@@ -9,6 +9,15 @@ Board::Board() {
 		}
 	}
 }
+
+void Board::off_backlight() {
+	for (size_t i = 0; i < 8; i++) {
+		for (size_t j = 0; j < 8; j++) {
+			all_cells[i][j].off_backlight();
+		}
+	}
+}
+
 Cell& Board::get_all_cells(int _x, int _y) {
 	return all_cells[_x][_y];
 }

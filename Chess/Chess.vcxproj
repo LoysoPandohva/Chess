@@ -143,18 +143,17 @@
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="King.cpp" />
     <ClCompile Include="Knight.cpp" />
-    <ClCompile Include="Mouse_cursor.cpp" />
     <ClCompile Include="Notation.cpp" />
     <ClCompile Include="Pieces_on_board.cpp" />
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="Cell.cpp" />
     <ClCompile Include="Pawn.cpp" />
     <ClCompile Include="Piece.cpp" />
-    <ClCompile Include="Player_action.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="Queen.cpp" />
     <ClCompile Include="Rook.cpp" />
     <ClCompile Include="Server.cpp" />
-    <ClCompile Include="Test.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bishop.h" />
@@ -162,14 +161,13 @@
     <ClInclude Include="Cursor.h" />
     <ClInclude Include="King.h" />
     <ClInclude Include="Knight.h" />
-    <ClInclude Include="Mouse_cursor.h" />
     <ClInclude Include="Notation.h" />
     <ClInclude Include="Pieces_on_board.h" />
     <ClInclude Include="Board.h" />
     <ClInclude Include="Cell.h" />
     <ClInclude Include="Pawn.h" />
     <ClInclude Include="Piece.h" />
-    <ClInclude Include="Player_action.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="Queen.h" />
     <ClInclude Include="Rook.h" />
     <ClInclude Include="Server.h" />
