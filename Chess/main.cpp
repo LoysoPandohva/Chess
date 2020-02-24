@@ -1,7 +1,7 @@
 ﻿#include "Server.h"
 #include "Client.h"
 
-const char* enter_IP(sf::RenderWindow &_window) {
+std::string enter_IP(sf::RenderWindow &_window) {
 	sf::Font font;
 	font.loadFromFile("Font//cour.ttf");
 	sf::Text t[2];
@@ -51,14 +51,14 @@ const char* enter_IP(sf::RenderWindow &_window) {
 		}
 		else if (event.type == sf::Event::KeyReleased) single_press = false;
 	}
-	return str.data();
+	return str;
 }
 
 int main() {
 	sf::RenderWindow window(sf::VideoMode(630, 500), "Chess");
-	const char* ip = enter_IP(window);
+	std::string ip = enter_IP(window);
 	Client client;
-	if (client.start_client(ip)) {
+	if (client.start_client(ip.data())) {
 		Pieces_on_board pob;
 		Game game(pob, true);
 		client.handle(window, game);
